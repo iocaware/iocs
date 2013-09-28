@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<ioc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="391bbf2a-e41f-4e9b-a326-70bbe2272232" last-modified="2013-09-28T18:27:10" xmlns="http://schemas.mandiant.com/2010/ioc">
+  <short_description>OSX/Leverage</short_description>
+  <description>OSX Malware found in the wild. </description>
+  <authored_by>Matt Jezorek (IOCAware)</authored_by>
+  <authored_date>2013-09-28T18:13:24</authored_date>
+  <links />
+  <definition>
+    <Indicator operator="OR" id="8ad9e87e-3c88-4ed3-84a0-f50c901908f5">
+      <Indicator operator="AND" id="833f9707-fa77-4828-b199-7acf630df9d9">
+        <IndicatorItem id="7610351f-a2ba-4ea0-9c32-6dd32a73077d" condition="is">
+          <Context document="FileItem" search="FileItem/FullPath" type="mir" />
+          <Content type="string">/Users/Shared/UserEvent.app</Content>
+        </IndicatorItem>
+        <IndicatorItem id="7a935b6f-60ce-476f-88d4-3602a8cfbdb1" condition="contains">
+          <Context document="FileItem" search="FileItem/FilePath" type="mir" />
+          <Content type="string">/Library/LaunchAgents/UserEvent.System.plist</Content>
+        </IndicatorItem>
+        <Indicator operator="AND" id="e166e4f1-c448-457b-b137-9ab27412ba01">
+          <IndicatorItem id="23348eac-0fe2-404a-b064-487aea7efbce" condition="is">
+            <Context document="FileItem" search="FileItem/FullPath" type="mir" />
+            <Content type="string">/Users/Shared/UserEvent.app/Contents/MacOS/UserEvent</Content>
+          </IndicatorItem>
+          <IndicatorItem id="089a29a8-b88c-41e6-9cb9-a19a2b5c9ba5" condition="contains">
+            <Context document="FileItem" search="FileItem/StringList/string" type="mir" />
+            <Content type="string">rm '/Users/Shared/UserEvent.app/Contents/Resources/UserEvent.icns</Content>
+          </IndicatorItem>
+          <IndicatorItem id="12d73a24-0d56-47fa-a2e7-28f112643e22" condition="contains">
+            <Context document="FileItem" search="FileItem/StringList/string" type="mir" />
+            <Content type="string">osascript -e 'tell application</Content>
+          </IndicatorItem>
+        </Indicator>
+      </Indicator>
+      <Indicator operator="AND" id="426c2f50-a687-405e-8cbd-bf4ac1796ca3">
+        <IndicatorItem id="3e69f85c-9991-4ba7-9144-80e85d6eab58" condition="contains">
+          <Context document="DnsEntryItem" search="DnsEntryItem/Host" type="mir" />
+          <Content type="string">servicesmsc.sytes.net</Content>
+        </IndicatorItem>
+      </Indicator>
+    </Indicator>
+  </definition>
+</ioc>
