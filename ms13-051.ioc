@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<ioc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="2c818104-bfe4-4ee9-93b9-195e78827531" last-modified="2013-06-18T13:29:04" xmlns="http://schemas.mandiant.com/2010/ioc">
+ <short_description>IOC For Detection of MS13-051</short_description>
+ <authored_date>2013-06-18T13:29:04</authored_date>
+ <links>
+  <link>http://blogs.technet.com/b/srd/archive/2013/06/11/ms13-051-get-out-of-my-office.aspx</link>
+  <link>http://eromang.zataz.com/2013/06/13/ms13-051-cve-2013-1331-what-we-know-about-microsoft-office-zero-day/</link>
+ </links>
+ <definition>
+ 	<Indicator operator="OR" id="037e4172-e686-46c1-8e5b-c04df8f49f3c">
+ 	 <IndicatorItem id="3169f729-b9bd-4d82-8ad4-b799fe938268" condition="contains">
+ 	 	<Context document="DnsEntryItem" search="DnsEntryItem/Host" type="mir" />
+ 	 	<Content type="string">intent.nofrillspace.com</Content>
+ 	 </IndicatorItem>
+ 	 <IndicatorItem id="cc89ff36-5367-4b65-9d81-64b0d170bed3" condition="contains">
+ 	 	<Context document="DnsEntryItem" search="DnsEntryItem/Host" type="mir" />
+ 	 	<Content type="string">mister.nofrillspace.com</Content>
+ 	 </IndicatorItem>
+ 	 <IndicatorItem id="9b237679-6ec1-4ddf-ac14-d3ea142d7ad2" condition="contains">
+ 	 	<Context document="DnsEntryItem" search="DnsEntryItem/Host" type="mir" />
+ 	 	<Content type="string">www.bridginglinks.com</Content>
+ 	 </IndicatorItem>
+ 	 <IndicatorItem id="44ee3fbe-ad79-4b12-bbba-ea1e94091685" condition="contains">
+ 	 	<Context document="DnsEntryItem" search="DnsEntryItem/Host" type="mir" />
+ 	 	<Content type="string">www.police28122011.0fees.net</Content>
+ 	 </IndicatorItem>
+ 	 <IndicatorItem id="e9052171-b813-4d51-bbb2-dc2e61e4b11d" condition="contains">
+ 	 	<Context document="DnsEntryItem" search="DnsEntryItem/Host" type="mir" />
+ 	 	<Content type="string">zhongguoren.hostoi.com</Content>
+ 	 </IndicatorItem>
+ 	</Indicator>
+ </definition>
+</ioc>
